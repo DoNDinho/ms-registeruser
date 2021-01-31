@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "6b7957d3-44e1-41ce-8c66-cf3b3072bc44",
+		"name": "RegisterUser",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DEV Registrar Usuario",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');\r",
+							"const timestamp = moment().format(\"YYYY-MM-DDTHH:mm:ss\");\r",
+							"pm.environment.set(\"timestamp\", timestamp);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "transaction_id",
+						"value": "{{$randomInt}}{{$randomInt}}{{$randomInt}}{{$randomInt}}",
+						"type": "text"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "channel_id",
+						"value": "11",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": {\r\n        \"client_credentials\":{\r\n            \"email\": \"di.floresr96@gmail.com\",\r\n            \"password\": \"12345\"\r\n        },\r\n        \"client_data\": {\r\n            \"nickname\": \"Dinho\",\r\n            \"age\": 24,\r\n            \"phone\": \"966206918\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
